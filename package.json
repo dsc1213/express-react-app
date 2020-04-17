@@ -1,0 +1,31 @@
+{
+  "name": "express-react",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "PORT=3001 NODE_ENV=dev nodemon ./bin/start.js",
+    "dev:inspect": "PORT=3001 NODE_ENV=dev nodemon --inspect ./bin/start.js",
+    "build:watch": "NODE_ENV=development npm run pre-build && webpack -p --progress --config=webpack/dev.js --watch",
+    "build:prod": "NODE_ENV=development npm run pre-build && webpack -p --progress --config=webpack/prod.js",
+    "pre-build": "webpack --config=webpack/vendor.config.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "express-react-views": "^0.11.0",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "babel-deps": "./local_modules/babel-deps/",
+    "eslint-deps": "./local_modules/eslint-deps/",
+    "nodemon": "^2.0.3",
+    "react-router-dom": "^5.0.1",
+    "sass": "^1.26.3",
+    "webpack-deps": "./local_modules/webpack-deps/"
+  }
+}
