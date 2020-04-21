@@ -5,11 +5,13 @@
   "scripts": {
     "analyze": "WEBPACK_ANALYZE=true ./node_modules/.bin/webpack --config webpack/client/dev.js --profile --json > stats.json",
     "analyze:vendor": "WEBPACK_ANALYZE=true ./node_modules/.bin/webpack --config webpack/client/vendor.config.js --profile --json > stats.json",
+    "build:watch": "NODE_ENV=dev npm run pre-build && NODE_ENV=dev webpack -p --progress --config=webpack/client/dev.js --watch",
+    "build:prod": "NODE_ENV=production npm run pre-build && NODE_ENV=production webpack -p --progress --config=webpack/client/prod.js && npm run build:server:prod",
+    "build:dev": "NODE_ENV=dev npm run pre-build && NODE_ENV=dev webpack --progress --config=webpack/client/dev.js && npm run build:server",
+    "build:server:prod": "webpack --progress --config=webpack/server/prod.server.js",
+    "build:server": "webpack --progress --config=webpack/server/dev.server.js",
     "dev": "PORT=3001 NODE_ENV=dev nodemon ./bin/server.js",
     "dev:inspect": "PORT=3001 NODE_ENV=dev nodemon --inspect ./bin/server.js",
-    "build:watch": "NODE_ENV=dev npm run pre-build && NODE_ENV=dev webpack -p --progress --config=webpack/client/dev.js --watch",
-    "build:prod": "NODE_ENV=production npm run pre-build && NODE_ENV=production webpack -p --progress --config=webpack/client/prod.js",
-    "build:server": "webpack --progress --config=webpack/server/dev.server.js",
     "pre-build": "webpack --config=webpack/client/vendor.config.js"
   },
   "dependencies": {

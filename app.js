@@ -37,8 +37,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.resolve('dist')));
 
+// app.use(express.static(path.join(__dirname, 'dist')));
 if (!isDevMode) {
   // minify only on prod servers
   app.use(minifyHTML(configs.minifyHtml));

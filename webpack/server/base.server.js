@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.resolve('dist', 'server'),
     filename: `server.${appVersion}.js`,
-    publicPath: '/server/',
+    publicPath: '',
   },
   watch: false,
   module: {
