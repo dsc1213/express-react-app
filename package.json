@@ -3,29 +3,53 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "PORT=3001 NODE_ENV=dev nodemon ./bin/start.js",
-    "dev:inspect": "PORT=3001 NODE_ENV=dev nodemon --inspect ./bin/start.js",
-    "build:watch": "NODE_ENV=development npm run pre-build && webpack -p --progress --config=webpack/dev.js --watch",
-    "build:prod": "NODE_ENV=development npm run pre-build && webpack -p --progress --config=webpack/prod.js",
-    "pre-build": "webpack --config=webpack/vendor.config.js"
+    "analyze": "WEBPACK_ANALYZE=true ./node_modules/.bin/webpack --config webpack/client/dev.js --profile --json > stats.json",
+    "analyze:vendor": "WEBPACK_ANALYZE=true ./node_modules/.bin/webpack --config webpack/client/vendor.config.js --profile --json > stats.json",
+    "dev": "PORT=3001 NODE_ENV=dev nodemon ./bin/server.js",
+    "dev:inspect": "PORT=3001 NODE_ENV=dev nodemon --inspect ./bin/server.js",
+    "build:watch": "NODE_ENV=dev npm run pre-build && NODE_ENV=dev webpack -p --progress --config=webpack/client/dev.js --watch",
+    "build:prod": "NODE_ENV=production npm run pre-build && NODE_ENV=production webpack -p --progress --config=webpack/client/prod.js",
+    "build:server": "webpack --progress --config=webpack/server/dev.server.js",
+    "pre-build": "webpack --config=webpack/client/vendor.config.js"
   },
   "dependencies": {
+    "@7eleven/7boss-components": "^1.0.36",
+    "@7eleven/7boss-style": "^1.1.21",
+    "bootstrap": "^4.4.1",
+    "connected-react-router": "^6.8.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "express-minify-html": "^0.12.0",
     "express-react-views": "^0.11.0",
+    "font-awesome": "^4.7.0",
+    "history": "^4.10.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.4",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "babel-deps": "./local_modules/babel-deps/",
     "eslint-deps": "./local_modules/eslint-deps/",
     "nodemon": "^2.0.3",
-    "react-router-dom": "^5.0.1",
     "sass": "^1.26.3",
     "webpack-deps": "./local_modules/webpack-deps/"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ]
 }

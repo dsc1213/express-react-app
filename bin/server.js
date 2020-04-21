@@ -1,15 +1,10 @@
-#!/usr/bin/env node
-
 /**
  * Module dependencies.
  */
 
-const app = require('../server');
+const app = require('../app');
 const debug = require('debug')('express-react:server');
 const http = require('http');
-
-const dotenv = require('dotenv');
-dotenv.config({ path: `${__dirname}/../.env` });
 
 /**
  * Get port from environment and store in Express.
@@ -21,14 +16,17 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
 const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, err => {
+  if (err) throw err;
+  // log.info(`Next server started on: ${PORT}`);
+  console.log(`server started on: ${port}`);
+});
 server.on('error', onError);
 server.on('listening', onListening);
 

@@ -2,9 +2,11 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const { vendor } = require('./config');
+const { vendor, nodeEnv, webpackAnalyze, appVersion } = require('../config');
+const isProd = nodeEnv === 'prod' || nodeEnv === 'production';
 
 const minimizer = [
   new TerserPlugin({
@@ -15,15 +17,15 @@ const minimizer = [
 ];
 
 module.exports = {
-  mode: 'production',
+  mode: isProd ? 'production' : 'development',
   devtool: 'source-map',
   entry: {
     vendor,
   },
 
   output: {
-    filename: 'vendor.bundle.js',
-    path: resolve('public', 'dist'),
+    filename: `vendor.${appVersion}.bundle.js`,
+    path: resolve('dist', 'client'),
     library: '[name]_[hash]',
   },
 
@@ -46,10 +48,16 @@ module.exports = {
       new CleanWebpackPlugin(),
       new webpack.DllPlugin({
         name: '[name]_[hash]',
-        path: path.resolve(__dirname, '../public/dist/[name]-manifest.json'),
+        path: path.resolve('dist', 'client/[name]-manifest.json'),
       }),
     ];
-
+    // run webpack-bundle-analyzer
+    if (webpackAnalyze === 'true') {
+      plugins.push(new BundleAnalyzerPlugin());
+    }
     return plugins;
   })(),
+  performance: {
+    hints: false,
+  },
 };

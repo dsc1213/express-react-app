@@ -3,11 +3,14 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.redirect('/7Boss/Inventory/login');
+  const { app: { locals: { configs = {} } = {} } = {} } = req;
+  const { routes: { routeAfterLogin } = {} } = configs;
+  // res.redirect(routeAfterLogin);
+  res.redirect('/7Boss/Inventory/home');
 });
 
 // Any Route that starts with /7Boss/Inventory goes to inventory view
-router.get(/\/7Boss\/Inventory(\/.*)?/, (req, res) => {
+router.get(/\/7Boss\/Inventory(\/.*)?/, (_req, res) => {
   res.render('inventory');
 });
 

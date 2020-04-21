@@ -3,6 +3,7 @@ babelrc
 yarn-error.log
 yarn.lock
 package-lock.json
-public
+dist
 .env
-.DS_Store
+stats.json
+*/.DS_Store

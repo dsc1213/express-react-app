@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+module.exports = (_req, res, next) => {
   // res._end: true means there was a successfull req->res
   if (res._end) {
     // add here logic to a common action after routes
