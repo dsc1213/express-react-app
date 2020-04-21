@@ -1,18 +1,18 @@
 /* eslint-disable react/prop-types */
 const React = require('react');
 const Base = require('./base');
-const Path = require('path');
+// const Path = require('path');
 const { APP_VERSION } = process.env;
 
 // This file can be modified as per the application routes and filenames
 function Inventory(props) {
-  // const jsSrc = `/client/7BossInventory.${APP_VERSION}.bundle.js`;
-  // const cssSrc = `/client/7BossInventory.${APP_VERSION}.bundle.css`;
+  const jsSrc = `/client/7BossInventory.${APP_VERSION}.bundle.js`;
+  const cssSrc = `/client/7BossInventory.${APP_VERSION}.bundle.css`;
 
   // const jsSrc = Path.resolve('dist', `client/7BossInventory.${APP_VERSION}.bundle.js`);
   // const cssSrc = Path.resolve('dist', `client/7BossInventory.${APP_VERSION}.bundle.css`);
-  const jsSrc = `../../client/7BossInventory.${APP_VERSION}.bundle.js`;
-  const cssSrc = `../../client/7BossInventory.${APP_VERSION}.bundle.css`;
+  // const jsSrc = `../../client/7BossInventory.${APP_VERSION}.bundle.js`;
+  // const cssSrc = `../../client/7BossInventory.${APP_VERSION}.bundle.css`;
 
   console.log('>>>>>>>>>>>>>>>>>>', jsSrc, cssSrc);
 

@@ -14,9 +14,9 @@ class Base extends React.Component {
       jsHead,
       // assetUrlFn = (url) => url,
     } = this.props;
-    // const vendorSrc = `/client/vendor.${APP_VERSION}.bundle.js`;
+    const vendorSrc = `/client/vendor.${APP_VERSION}.bundle.js`;
     // const vendorSrc = Path.resolve('dist', `client/vendor.${APP_VERSION}.bundle.js`);
-    const vendorSrc = `../../client/vendor.${APP_VERSION}.bundle.js`;
+    // const vendorSrc = `../../client/vendor.${APP_VERSION}.bundle.js`;
 
     return (
       <html>

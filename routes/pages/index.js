@@ -5,8 +5,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const { app: { locals: { configs = {} } = {} } = {} } = req;
   const { routes: { routeAfterLogin } = {} } = configs;
-  // res.redirect(routeAfterLogin);
-  res.redirect('/7Boss/Inventory/home');
+  res.redirect(routeAfterLogin);
+  // res.redirect('/7Boss/Inventory/home');
 });
 
 // Any Route that starts with /7Boss/Inventory goes to inventory view
